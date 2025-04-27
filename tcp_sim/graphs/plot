@@ -1,0 +1,16 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv('../data/results.csv')
+
+for metric in ['throughput','goodput']:
+    plt.figure()
+    for variant in ['tahoe','reno']:
+        sub = df[df.variant==variant]
+        plt.plot(sub.loss, sub[metric], marker='o', label=variant.capitalize())
+    plt.title(f'{metric.capitalize()} vs. Loss Probability')
+    plt.xlabel('Packet Loss Probability')
+    plt.ylabel(metric.capitalize())
+    plt.legend()
+    plt.grid(True)
+    plt.savefig(f'../report/{metric}_vs_loss.png')
