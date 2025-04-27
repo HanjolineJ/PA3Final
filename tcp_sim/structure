@@ -1,0 +1,12 @@
+tcp_sim/
+├── src/            # C source files
+│   ├── 
+│   ├── 
+│   ├── 
+│   └── 
+├── build/          # Compiled binaries
+├── scripts/        # Shell scripts for compile & run
+│   └── run_all.sh
+└── data/           # Raw output CSVs
+└── analysis/       # Python graphing scripts
+└── report/         # Final write-up (Markdown or LaTeX)
