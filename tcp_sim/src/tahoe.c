@@ -9,6 +9,8 @@ int main(int argc, char *argv[]) {
     }
 
     double loss = atof(argv[1]);
-    run_simulation(TAHOE, loss, stdout);
+    double thr, gpt;
+    run_simulation(TAHOE, loss, &thr, &gpt);
+    printf("Tahoe,%.2f,%.2f,%.2f\n", loss, thr, gpt);
     return 0;
 }

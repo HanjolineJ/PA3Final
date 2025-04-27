@@ -9,6 +9,8 @@ int main(int argc, char *argv[]) {
     }
 
     double loss = atof(argv[1]);
-    run_simulation(RENO, loss, stdout);
+    double thr, gpt;
+    run_simulation(RENO, loss, &thr, &gpt);
+    printf("Reno,%.2f,%.2f,%.2f\n", loss, thr, gpt);
     return 0;
 }

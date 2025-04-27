@@ -18,6 +18,9 @@ typedef struct {
     int packets_acked;         // total unique ACKs
 } tcp_state_t;
 
-void run_simulation(tcp_variant variant, double loss_prob, FILE *out);
+void run_simulation(tcp_variant variant,
+    double    loss_prob,
+    double   *throughput,
+    double   *goodput);
 
 #endif // SHARE_H
