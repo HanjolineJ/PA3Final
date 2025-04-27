@@ -1,16 +1,52 @@
+import os
 import pandas as pd
 import matplotlib.pyplot as plt
 
-df = pd.read_csv('../data/results.csv')
+def main():
+    csv_path = os.path.join(os.path.dirname(__file__), '..', 'data', 'results.csv')
+    csv_path = os.path.abspath(csv_path)
+    print(f"Loading data from: {csv_path}")
 
-for metric in ['throughput','goodput']:
-    plt.figure()
-    for variant in ['tahoe','reno']:
-        sub = df[df.variant==variant]
-        plt.plot(sub.loss, sub[metric], marker='o', label=variant.capitalize())
-    plt.title(f'{metric.capitalize()} vs. Loss Probability')
-    plt.xlabel('Packet Loss Probability')
-    plt.ylabel(metric.capitalize())
-    plt.legend()
-    plt.grid(True)
-    plt.savefig(f'../report/{metric}_vs_loss.png')
+    df = pd.read_csv(csv_path)
+    df['loss'] = df['loss'].astype(float)
+
+    for metric in ['throughput', 'goodput']:
+        plt.figure(figsize=(6,4))
+        for variant in ['tahoe', 'reno']:
+            sub = df[df['variant'] == variant]
+            plt.plot(sub['loss'], sub[metric], marker='o', linestyle='-', label=variant.capitalize())
+
+        plt.title(f'{metric.capitalize()} vs. Loss Probability')
+        plt.xlabel('Packet Loss Probability')
+        plt.ylabel(metric.capitalize())
+        plt.legend()
+        plt.grid(True, which='both', ls='--', alpha=0.5)
+        plt.tight_layout()
+
+        out_dir = os.path.join(os.path.dirname(__file__), '..', 'graphs')
+        os.makedirs(out_dir, exist_ok=True)
+        out_path = os.path.join(out_dir, f"{metric}_vs_loss.png")
+        plt.savefig(out_path, dpi=150)
+        print(f"  • Saved {out_path}")
+        plt.show()
+
+if __name__ == "__main__":
+    main()
+
+#plt.style.use('ggplot')  # Use a nicer style
+
+#df = pd.read_csv('../data/results.csv')
+
+#for metric in ['throughput','goodput']:
+    #plt.figure(figsize=(8, 6))
+    #for variant in ['tahoe','reno']:
+        #sub = df[df.variant == variant]
+        #plt.plot(sub.loss, sub[metric], marker='o', linestyle='-', label=variant.capitalize())
+    #plt.title(f'{metric.capitalize()} vs. Loss Probability')
+    #plt.xlabel('Packet Loss Probability')
+    #plt.ylabel(metric.capitalize())
+    #plt.xscale('log')       # Log scale on x-axis helps visualize differences
+    #plt.grid(True)
+    #plt.legend()
+    #plt.savefig(f'../report/{metric}_vs_loss.png')
+    #plt.close()
