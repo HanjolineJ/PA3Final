@@ -2,33 +2,39 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 
+def plot_metric(df, metric, out_dir):
+    plt.figure(figsize=(6,4))
+    for variant in df['variant'].unique():
+        sub = df[df['variant'] == variant]
+        # ensure loss is numeric
+        x = sub['loss'].astype(float)
+        y = sub[metric].astype(float)
+        plt.plot(x, y, marker='o', linestyle='-', label=variant)
+    plt.title(f"{metric.capitalize()} vs. Packet Loss Probability")
+    plt.xlabel("Packet Loss Probability")
+    plt.ylabel(metric.capitalize())
+    plt.grid(True, ls='--', alpha=0.5)
+    plt.legend()
+    plt.tight_layout()
+
+    os.makedirs(out_dir, exist_ok=True)
+    out_path = os.path.join(out_dir, f"{metric}_vs_loss.png")
+    plt.savefig(out_path, dpi=150)
+    print(f"Saved {out_path}")
+    plt.close()
+
 def main():
-    csv_path = os.path.join(os.path.dirname(__file__), '..', 'data', 'results.csv')
-    csv_path = os.path.abspath(csv_path)
-    print(f"Loading data from: {csv_path}")
-
+    # adjust path if needed
+    repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+    csv_path  = os.path.join(repo_root, 'data', 'results.csv')
+    if not os.path.isfile(csv_path):
+        raise FileNotFoundError(f"Can't find {csv_path}; run your simulations first.")
+    print("Loading:", csv_path)
     df = pd.read_csv(csv_path)
-    df['loss'] = df['loss'].astype(float)
 
+    graphs_dir = os.path.join(repo_root, 'graphs')
     for metric in ['throughput', 'goodput']:
-        plt.figure(figsize=(6,4))
-        for variant in ['tahoe', 'reno']:
-            sub = df[df['variant'] == variant]
-            plt.plot(sub['loss'], sub[metric], marker='o', linestyle='-', label=variant.capitalize())
-
-        plt.title(f'{metric.capitalize()} vs. Loss Probability')
-        plt.xlabel('Packet Loss Probability')
-        plt.ylabel(metric.capitalize())
-        plt.legend()
-        plt.grid(True, which='both', ls='--', alpha=0.5)
-        plt.tight_layout()
-
-        out_dir = os.path.join(os.path.dirname(__file__), '..', 'graphs')
-        os.makedirs(out_dir, exist_ok=True)
-        out_path = os.path.join(out_dir, f"{metric}_vs_loss.png")
-        plt.savefig(out_path, dpi=150)
-        print(f"  • Saved {out_path}")
-        plt.show()
+        plot_metric(df, metric, graphs_dir)
 
 if __name__ == "__main__":
     main()
