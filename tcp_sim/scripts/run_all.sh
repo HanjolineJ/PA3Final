@@ -25,4 +25,6 @@ echo "✓ Wrote all results to $DATA/results.csv"
 
 # Make it executable:
 # chmod +x /Users/hanjo/PA3Final/tcp_sim/scripts/run_all.sh
+#./build.sh
+#./run_all.sh
 

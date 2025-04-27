@@ -62,7 +62,8 @@ void run_simulation(tcp_variant variant,
     *goodput    = (double)s.packets_acked / (double)s.packets_sent;
 }
 
-int main(int argc, char **argv) {
+//Main function is causing duplicate issues in the code comment out
+/*int main(int argc, char **argv) {
     if (argc < 2 || argc > 3) {
         fprintf(stderr, "Usage: %s LOSS_PROB [SEED]\n", argv[0]);
         return 1;
@@ -74,7 +75,7 @@ int main(int argc, char **argv) {
         : (unsigned int)time(NULL);
     srand(seed);
 
-    /* determine variant from the executable name */
+    /* determine variant from the executable name 
     tcp_variant variant = (strstr(argv[0], "tahoe") != NULL)
                         ? TAHOE
                         : RENO;
@@ -82,10 +83,11 @@ int main(int argc, char **argv) {
     double thr, gpt;
     run_simulation(variant, loss_prob, &thr, &gpt);
 
-    /* print one CSV line to stdout */
+     print one CSV line to stdout 
     printf("%s,%.2f,%.2f,%.2f\n",
            (variant == TAHOE ? "Tahoe" : "Reno"),
            loss_prob, thr, gpt);
 
     return 0;
 }
+*/
