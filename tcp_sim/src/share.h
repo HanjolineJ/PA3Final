@@ -6,7 +6,7 @@
 #include <time.h>
 
 /* How many discrete rounds (RTTs) to simulate */
-#define NUM_ROUNDS     100
+#define NUM_ROUNDS     1000
 
 typedef enum { TAHOE, RENO } tcp_variant;
 
