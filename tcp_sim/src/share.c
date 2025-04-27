@@ -1,4 +1,7 @@
 #include "share.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 void run_simulation(tcp_variant variant, double loss_prob, FILE *out) {
     tcp_state_t s = {
@@ -66,4 +69,7 @@ void run_simulation(tcp_variant variant, double loss_prob, FILE *out) {
             loss_prob,
             throughput,
             goodput);
+            
 }
+
+
