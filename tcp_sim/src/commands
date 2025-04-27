@@ -1,0 +1,7 @@
+chmod +x /Users/hanjo/PA3Final/tcp_sim/scripts/build.sh
+
+chmod +x /Users/hanjo/PA3Final/tcp_sim/scripts/run_all.sh
+
+cd /Users/hanjo/PA3Final/tcp_sim/scripts               
+./build.sh
+./run_all.sh
