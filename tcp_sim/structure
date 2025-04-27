@@ -1,12 +1,14 @@
 tcp_sim/
 ├── src/            # C source files
-│   ├── 
-│   ├── 
-│   ├── 
-│   └── 
+│   ├── reno.c
+│   ├── tahoe.c
+│   ├── share.c
+│   └── share.h
 ├── build/          # Compiled binaries
 ├── scripts/        # Shell scripts for compile & run
 │   └── run_all.sh
-└── data/           # Raw output CSVs
-└── analysis/       # Python graphing scripts
-└── report/         # Final write-up (Markdown or LaTeX)
+└── build/           # Compiled binaries
+├── data/           # Data csv files
+└── graph/       # Python graphs/ scripts
+└── report/         # Final write-up 
+└── script/           # Shell scripts for compile & run
