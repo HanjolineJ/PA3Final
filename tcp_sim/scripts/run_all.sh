@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
-ROOT="/Users/hanjo/PA3Final/tcp_sim"
+#ROOT="/Users/hanjo/PA3Final/tcp_sim"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")"/.. && pwd)"
 BUILD="$ROOT/build"
 DATA="$ROOT/data"
 

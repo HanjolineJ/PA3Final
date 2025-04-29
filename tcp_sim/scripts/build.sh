@@ -14,7 +14,8 @@
 set -e
 
 # absolute path to tcp_sim
-ROOT="/Users/hanjo/PA3Final/tcp_sim"
+#ROOT="/Users/hanjo/PA3Final/tcp_sim"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")"/.. && pwd)"
 
 # make sure build/ exists
 mkdir -p "$ROOT/build"
