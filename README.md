@@ -22,4 +22,7 @@ State variables: cwnd, ssthresh, sequence numbers, and timers
 Eevaluating the performance of each implementation
 
 
+## Quick start: 
+clone → cd tcp_sim/scripts → ./build.sh && ./run_all.sh → cd ../graphs && python3 plot.py
+
 
