@@ -1,10 +1,18 @@
-chmod +x /Users/hanjo/PA3Final/tcp_sim/scripts/build.sh
+#chmod +x /Users/hanjo/PA3Final/tcp_sim/scripts/build.sh
 
-chmod +x /Users/hanjo/PA3Final/tcp_sim/scripts/run_all.sh
+#chmod +x /Users/hanjo/PA3Final/tcp_sim/scripts/run_all.sh
 
-cd /Users/hanjo/PA3Final/tcp_sim/scripts               
+#cd /Users/hanjo/PA3Final/tcp_sim/scripts               
+#./build.sh
+#./run_all.sh
+
+#cd /Users/hanjo/PA3Final/tcp_sim/graphs
+#python3 plot.py
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")"/.. && pwd)"
+cd "$SCRIPT_DIR/scripts"
 ./build.sh
 ./run_all.sh
 
-cd /Users/hanjo/PA3Final/tcp_sim/graphs
-python3 plot.py
+cd "$SCRIPT_DIR/graphs"
+python3 plot
